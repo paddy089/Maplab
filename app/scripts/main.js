@@ -5,6 +5,7 @@
   let scrollPosition = 0;
   let windowHeight = 0;
   let windowWidth = 0;
+  let lastScrollPos = 0;
 
   const $window = $('window');
   const $body = $('body');
@@ -17,28 +18,23 @@
   const c01BigTitleChildren = $('.title-maplab').children();
   const topOffset01 = $('.lab-verb-title-01').offset().top;
   const topOffset02 = $('.lab-verb-title-02').offset().top;
-  // const c02LabVerbTitle = document.getElementById('P02-text-01');
-
-  // console.log('c01Height: ' + c01Height);
-
+  const testOffset = $('#P01-title-01').offset().top;
   const stop = {
     'big-title': 750,
-    'title-extra-1': 720
+    'title-extra-1': 720,
+    'move-big-title-again': 3200
   };
-
-  function onScroll() {
-    requestAnimationFrame(parallax);
-    scrollPosition = $(window).scrollTop();
-  }
 
   function parallax() {
     console.log('scrollPosition: ' + scrollPosition);
 
-    parallaxTitle();
-    parallaxTitleExtras();
+    moveTitle();
+    moveTitleExtras();
     // handleContainer02();
 
     // ######## //
+
+    // $("#el").offset().top - $(document).scrollTop()
 
     // yScroll = document.body.scrollTop || document.documentElement.scrollTop;
     // yScroll = $(window).scrollTop();
@@ -52,57 +48,68 @@
     }); */
 
     // ######## //
-
-    // #### Emhanced short version (verbose) #### //
-    // $(children).each(function(i) {
-    //   let id = children.eq(i).attr('id')
-    //   let speed = 1;
-    //
-    //   if (id == 'P01-title-01' || id == 'P01-title-04') {
-    //     speed = 10;
-    //
-    //   } else if (id == 'P01-title-02' || id == 'P01-title-05') {
-    //     speed = 9;
-    //
-    //   } else if (id == 'P01-title-03' || id == 'P01-title-06') {
-    //     speed = 8;
-    //   }
-    //
-    //   children.eq(i).css({
-    //     'transform': 'translate(0px, ' + (yScroll / speed) + '%)'
-    //   })
-    // });
   }
 
-  function parallaxTitle() {
+  function moveTitle() {
     if (scrollPosition < stop['big-title']) {
       $(c01BigTitleChildren).each(i => {
         const speed = (i === 1 || i === 4) ? 6 : (i === 2 || i === 5) ? 8 : 5;
-        // const speed = (i == 1 || i == 4) ? 190 : (i == 2 || i == 5) ? 180 : 200;
+        const $el = c01BigTitleChildren.eq(i);
+        const y = scrollPosition / speed * -1;
 
-        // console.log(children.eq(i));
-        c01BigTitleChildren.eq(i).css({
-          transform: 'translate(0px, ' + Math.round((-scrollPosition / speed)) + 'px)'
-        });
+        setTranslate3d(0, y, 0, $el);
       });
     }
+    // lastScrollPos = scrollPosition;
+    // } else if (scrollPosition > 3200) {
+    //   // const pos = scrollPosition - lastScrollPos - testOffset - 400;
+    //   hh = true;
+    //   const pos = scrollPosition - lastScrollPos - $(window).height() - testOffset - 150;
+    //   console.log('lastScrollPos:' + lastScrollPos);
+    //   console.log('calcPos: ' + pos);
+
+    //   $(c01BigTitleChildren).each(i => {
+    //     const speed = (i === 1 || i === 4) ? 6 : (i === 2 || i === 5) ? 8 : 5;
+    //     // const speed = (i == 1 || i == 4) ? 190 : (i == 2 || i == 5) ? 180 : 200;
+
+    //     // console.log(children.eq(i));
+    //     c01BigTitleChildren.eq(i).css({
+    //       transform: 'translate(0px, ' + Math.round(pos / speed * -1) + 'px)'
+    //     });
+    //   });
+    // }
   }
 
-  function parallaxTitleExtras() {
+  function moveTitleExtras() {
+    const $el = $('.lab-verb-title-01');
+    const y = scrollPosition / 5;
+
     if (scrollPosition < stop['title-extra-1']) {
-      $('.lab-verb-title-01').css({
-        transform: 'translateY(' + (scrollPosition / 5) + 'px)'
-      });
+      setTranslate3d(0, y, 0, $el);
     }
 
-    if (scrollPosition > stop['title-extra-1']) {
-      $('.lab-verb-title-02').css({
-        position: 'fixed'
-      });
+    if (scrollPosition > 1900) {
+      // $('.lab-verb-title-02').css({
+      //   transform: 'translateX(' + (-scrollPosition / 3) + 'px)'
+      // });
+      // $('.lab-verb-title-02').css({
+      //   position: 'fixed'
+      // });
+      // const fo = 4;
+      // const fn = fo + (scrollPosition / scrollPosition);
+      // const s = fn + 'wh';
+      // $('.lab-verb-title-02').css({
+      //   'font-size': s
+      // });
     } else {
-      $('.lab-verb-title-02').css({
-        position: 'absolute'
-      });
+      // $('.lab-verb-title-02').css({
+      //   position: 'absolute'
+      // });
+    }
+    if (scrollPosition > 3200) {
+      // $('.lab-verb-title-01').css({
+      //   transform: 'translateY(' + -1 + 'px)'
+      // });
     }
   }
 
@@ -151,7 +158,10 @@
   }
 
   function setTranslate3d(x, y, z, el) {
-    el.style.transform = 'translate3d(' + x + 'px, ' + y + 'px,' + z + 'px)';
+    // el.style.transform = 'translate3d(' + x + 'px, ' + y + 'px,' + z + 'px)';
+    el.css({
+      transform: 'translate3d(' + x + 'px, ' + y + 'px,' + z + 'px)'
+    });
   }
 
   /*   $('html').on('mousewheel', event => {
@@ -182,10 +192,15 @@
       // $('#block_land').hide();
       // $('.notPortrait').show()
     } else {
-      console.log('Switch to landscape for better user experience');
+      console.log('Switch to landscape view for better user experience');
       // $('#block_land').show();
       // $('.notPortrait').hide();
     }
+  }
+
+  function onScroll() {
+    requestAnimationFrame(parallax);
+    scrollPosition = $(window).scrollTop();
   }
 
   window.addEventListener('orientationchange', testOrientation, false);

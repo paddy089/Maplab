@@ -83,14 +83,15 @@
         }
         .lab-verb-title-02 {
           //left: -100vw;
-          top: 150vh; //margin-top: 10vh;
-          transform: translateZ(-50px);
+          top: 300vh; //margin-top: 10vh;
+          // transform: translateZ(-1000px);
+          // -webkit-transform: translateZ(-1000px)
         }
         .lab-verb-title-03 {
           //left: -100vw;
-          top: 150vh;
+          top: 400vh;
           margin-top: 10vh;
-          transform: translateZ(-40px);
+          // transform: translateZ(-10px);
         }
       }
     }

@@ -5,9 +5,9 @@
     "modernizr": "~2.8.1",
     "jquery": "^3.2.1",
     "normalize-css": "^7.0.0",
-    "jquery-mousewheel": "^3.1.13",
     "components-font-awesome": "^4.7.0",
-    "jquery.stellar": "^0.6.2"
+    "jquery.stellar": "^0.6.2",
+    "skrollr": "^0.6.30"
   },
   "devDependencies": {}
 }
