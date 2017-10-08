@@ -1,4 +1,4 @@
-/* global $ */
+/* global $, skrollr */
 (function () {
   'use strict';
 
@@ -81,16 +81,36 @@
   }
 
   function moveTitleExtras() {
-    const $el = $('.lab-verb-title-01');
-    const y = scrollPosition / 5;
+    const $el1 = $('.lab-verb-title-01');
+    const $el2 = $('.lab-verb-title-02');
+    const $el3 = $('.lab-verb-title-03');
+    const el1_y = scrollPosition / 5;
+    const el2_y = scrollPosition * -1.2;
+    const el3_y = scrollPosition * -1.1;
+
+    // const $this = $('.lab-verb-title-02');
+    // const offset = $this.offset().top;
+    // const height = $this.outerHeight();
+    // const left = $this.position().left;
+    // const factor = 0.5;
+    // const t = Math.round(((offset - (windowHeight / 2) + height) - scrollPosition) * factor);
+    // // const t = left + tt;
+    // const top = 'top' + offset + 'px';
+
+    // console.log(offset);
 
     if (scrollPosition < stop['title-extra-1']) {
-      setTranslate3d(0, y, 0, $el);
+      setTranslate3d(0, el1_y, 0, $el1);
     }
 
-    if (scrollPosition > 1900) {
+    if (scrollPosition < 1330) {
+      setTranslate3d(0, el3_y, 0, $el3);
+    }
+
+    if (scrollPosition < 1100) {
+      setTranslate3d(0, el2_y, 0, $el2);
       // $('.lab-verb-title-02').css({
-      //   transform: 'translateX(' + (-scrollPosition / 3) + 'px)'
+      //   transform: 'translate(' + t + 'px)'
       // });
       // $('.lab-verb-title-02').css({
       //   position: 'fixed'
@@ -111,50 +131,6 @@
       //   transform: 'translateY(' + -1 + 'px)'
       // });
     }
-  }
-
-  function handleContainer02() {
-    // console.log('lab-verbose-title offset top: ' + $('.lab-verb-title-01').offset().top);
-
-    const stop = 665;
-    // console.log($('.lab-verb-title-01').offset().left);
-    const wH = $(window).height();
-    const wW = $(window).width();
-    // console.log(wH);
-    // const topOffset = $('.lab-verb-title-01').offset().top;
-    console.log('topOffset: ' + topOffset01);
-
-    const pageY = Math.round((topOffset01 / 3.5) + (scrollPosition - ($(window).height() / 2)));
-    const pageY2 = Math.round((topOffset02 / 3.5) + (scrollPosition - ($(window).height() / 2)));
-    const pageYY = Math.round(-scrollPosition / 2);
-
-    const distance = Math.round(topOffset01 + 50);
-
-    // curve //
-    // const pos = ((4 * wW) / (Math.pow(wH, 3))) * Math.pow((scrollPosition / 2) - (wH / 2), 3);
-
-    // if (scrollPosition > ($('.lab-verb-title').offset().top - $(window).height())) {
-    /*  $('.lab-verb-title-01').css({
-       transform: 'translate(' + Math.round((-scrollPosition / 20)) + '%,' + Math.round((scrollPosition / 3.5)) + '%)'
-     });
-     $('.lab-verb-title-02').css({
-       transform: 'translate(' + Math.round((scrollPosition / 20)) + '%,' + Math.round((scrollPosition / 3.5)) + '%)'
-     }); */
-    $('.lab-verb-title-01').css({
-      transform: 'translate3d(' + Math.round((-scrollPosition * 1.5)) + 'px,' + pageY + 'px, 0px)'
-    });
-    // $('.lab-verb-title-02').css({
-    //   transform: 'translate(' + Math.round((scrollPosition * 1.5)) + 'px,' + pageY2 + 'px)'
-    // });
-    // }
-    /* else {
-         $('.lab-verb-title-01').css({
-           transform: 'translate(-659px,' + Math.round((-scrollPosition / 3)) + 'px)'
-         });
-         $('.lab-verb-title-02').css({
-           transform: 'translate(659px,' + Math.round((-scrollPosition / 3)) + 'px)'
-         });
-       } */
   }
 
   function setTranslate3d(x, y, z, el) {
@@ -205,4 +181,6 @@
 
   window.addEventListener('orientationchange', testOrientation, false);
   window.addEventListener('scroll', onScroll, false);
+  // skrollr.init();
+  // $(window).paroller();
 })();

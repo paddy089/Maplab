@@ -5,14 +5,22 @@
   $colorRed: firebrick;
   $colorYellow: lightyellow;
   $colorGreen: lightgreen;
-  $colorBlue: aliceblue;
+  $colorBlue: #00001a;
   $colorDarkGrey: #333;
   $colorVeryDarkGrey: #222;
   $colorLighterDarkGrey: #32363A;
   $colorVeryLightGrey: #EEE; // images
+  @mixin light-theme {
+    background-color: $colorVeryLightGrey;
+    color: $colorVeryDarkGrey;
+  }
+  @mixin dark-theme {
+    background-color: $colorBlue;
+    color: $colorVeryLightGrey;
+  }
   $imageMapbox: "https://api.mapbox.com/styles/v1/paddy089/cj7df4ztu0oe12rqfvpob5uks/static/11.567849,48.136348,12.51,0.00,0.00/712x400@2x?access_token=pk.eyJ1IjoicGFkZHkwODkiLCJhIjoiY2ozYmkxMTh4MDA1ZTMybXFxYnFpM3BpcSJ9.QFgSlh_GqSr9vM4i2ZSuEg"; // body
   body {
-    background-color: $colorVeryLightGrey;
+    @include light-theme;
     font-family: 'Dosis', sans-serif;
     font-size: 100%;
     text-rendering: optimizeLegibility;
@@ -64,7 +72,7 @@
         .title-maplab {
           display: inline-flex;
           text-transform: uppercase;
-          color: $colorVeryDarkGrey; // :nth-child(3) {
+          // color: $colorVeryDarkGrey; // :nth-child(3) {
           //   box-shadow: 0.2rem 0 $colorRed;
           // }
           .letter {
@@ -72,24 +80,28 @@
           }
         }
       }
+      .lab-verb-title-01 {
+        @include flex-center; 
+        top: -10vh; //right: -100vw;
+        transform: translateZ(-50px);
+      }
       .c-02 {
         @include flex-center; 
         overflow-x: hidden;
+        height: 100vh;
+        margin-top: 100vh;
         // transform: translateZ(-20px);
         // -webkit-transform: translateZ(-20px);
-        .lab-verb-title-01 {
-          top: -10vh; //right: -100vw;
-          transform: translateZ(-50px);
-        }
+       
         .lab-verb-title-02 {
           //left: -100vw;
-          top: 300vh; //margin-top: 10vh;
+          //top: 300vh; //margin-top: 10vh;
           // transform: translateZ(-1000px);
           // -webkit-transform: translateZ(-1000px)
         }
         .lab-verb-title-03 {
           //left: -100vw;
-          top: 400vh;
+          //top: 400vh;
           margin-top: 10vh;
           // transform: translateZ(-10px);
         }
