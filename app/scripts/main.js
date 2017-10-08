@@ -3,35 +3,40 @@
   'use strict';
 
   let scrollPosition = 0;
+  let windowHeight = 0;
+  let windowWidth = 0;
 
-  const requestAnimationFrame =
-    window.requestAnimationFrame ||
-    window.mozRequestAnimationFrame ||
-    window.webkitRequestAnimationFrame ||
-    window.oRequestAnimationFrame ||
-    window.msRequestAnimationFrame;
-  // console.log(requestAnimationFrame.toString());
+  const $window = $('window');
+  const $body = $('body');
+  const requestAnimationFrame = window.requestAnimationFrame ||
+                                window.mozRequestAnimationFrame ||
+                                window.webkitRequestAnimationFrame ||
+                                window.oRequestAnimationFrame ||
+                                window.msRequestAnimationFrame;
 
-  const c01TitleChildren = $('#P01-title-all').children();
-  const c01Height = $('.container-01').height();
+  const c01BigTitleChildren = $('.title-maplab').children();
   const topOffset01 = $('.lab-verb-title-01').offset().top;
   const topOffset02 = $('.lab-verb-title-02').offset().top;
-  //const c02LabVerbTitle = document.getElementById('P02-text-01');
+  // const c02LabVerbTitle = document.getElementById('P02-text-01');
 
-  //console.log('c01Height: ' + c01Height);
+  // console.log('c01Height: ' + c01Height);
+
+  const stop = {
+    'big-title': 750,
+    'title-extra-1': 720
+  };
 
   function onScroll() {
     requestAnimationFrame(parallax);
-    // parallax();
-    //scrollPosition = window.pageYOffset;
     scrollPosition = $(window).scrollTop();
   }
 
   function parallax() {
     console.log('scrollPosition: ' + scrollPosition);
 
-    handleContainer01();
-    handleContainer02();
+    parallaxTitle();
+    parallaxTitleExtras();
+    // handleContainer02();
 
     // ######## //
 
@@ -69,20 +74,36 @@
     // });
   }
 
-  function handleContainer01() {
-    // console.log('P01-title-all offset top: ' + $('#P01-title-all').offset().top);
+  function parallaxTitle() {
+    if (scrollPosition < stop['big-title']) {
+      $(c01BigTitleChildren).each(i => {
+        const speed = (i === 1 || i === 4) ? 6 : (i === 2 || i === 5) ? 8 : 5;
+        // const speed = (i == 1 || i == 4) ? 190 : (i == 2 || i == 5) ? 180 : 200;
 
-    // if (scrollPosition < c01Height) {
-    $(c01TitleChildren).each(i => {
-      const speed = (i === 1 || i === 4) ? 6 : (i === 2 || i === 5) ? 8 : 5;
-      // const speed = (i == 1 || i == 4) ? 190 : (i == 2 || i == 5) ? 180 : 200;
-
-      // console.log(children.eq(i));
-      c01TitleChildren.eq(i).css({
-        transform: 'translate(0px, ' + Math.round((-scrollPosition / speed)) + 'px)'
+        // console.log(children.eq(i));
+        c01BigTitleChildren.eq(i).css({
+          transform: 'translate(0px, ' + Math.round((-scrollPosition / speed)) + 'px)'
+        });
       });
-    });
-    // }
+    }
+  }
+
+  function parallaxTitleExtras() {
+    if (scrollPosition < stop['title-extra-1']) {
+      $('.lab-verb-title-01').css({
+        transform: 'translateY(' + (scrollPosition / 5) + 'px)'
+      });
+    }
+
+    if (scrollPosition > stop['title-extra-1']) {
+      $('.lab-verb-title-02').css({
+        position: 'fixed'
+      });
+    } else {
+      $('.lab-verb-title-02').css({
+        position: 'absolute'
+      });
+    }
   }
 
   function handleContainer02() {
@@ -167,41 +188,6 @@
     }
   }
 
-  // addEventListener('mousewheel', Object);
   window.addEventListener('orientationchange', testOrientation, false);
   window.addEventListener('scroll', onScroll, false);
-
-  // $('main').stellar({
-  //   // Set scrolling to be in either one or both directions
-  //   horizontalScrolling: true,
-  //   verticalScrolling: true,
-  
-  //   // Set the global alignment offsets
-  //   horizontalOffset: 0,
-  //   verticalOffset: 0,
-  
-  //   // Refreshes parallax content on window load and resize
-  //   responsive: false,
-  
-  //   // Select which property is used to calculate scroll.
-  //   // Choose 'scroll', 'position', 'margin' or 'transform',
-  //   // or write your own 'scrollProperty' plugin.
-  //   scrollProperty: 'scroll',
-  
-  //   // Select which property is used to position elements.
-  //   // Choose between 'position' or 'transform',
-  //   // or write your own 'positionProperty' plugin.
-  //   positionProperty: 'position',
-  
-  //   // Enable or disable the two types of parallax
-  //   parallaxBackgrounds: true,
-  //   parallaxElements: true,
-  
-  //   // Hide parallax elements that move outside the viewport
-  //   hideDistantElements: true,
-  
-  //   // Customise how elements are shown and hidden
-  //   hideElement: function($elem) { $elem.hide(); },
-  //   showElement: function($elem) { $elem.show(); }
-  // });
 })();
