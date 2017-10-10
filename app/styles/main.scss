@@ -87,6 +87,21 @@
         top: -10vh; //right: -100vw;
         transform: translateZ(-50px);
       }
+      .x-scroll {
+        top: 50vh;
+      }
+      .c-03 {
+        height: 400vh;
+        background-color: $colorGreen;
+      }
+      .c-04 {
+        height: 100vh;
+        width: 100vw;
+        background-color: $colorYellow;
+        top: 0;
+        left: -100vw;
+        z-index: 9000;
+      }
       .c-02 {
         @include flex-center; 
         overflow-x: hidden;
@@ -105,7 +120,7 @@
           //left: -100vw;
           //top: 400vh;
           margin-top: 10vh;
-          // transform: translateZ(-10px);
+          transform: translateZ(-10px);
         }
       }
     }
