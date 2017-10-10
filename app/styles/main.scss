@@ -1,7 +1,8 @@
   // bower:scss
   // endbower
-  // Fonts
-  @import url('https://fonts.googleapis.com/css?family=Dosis:400,700'); // colors
+ // ### fonts ### //
+  @import url('https://fonts.googleapis.com/css?family=Dosis:400,700'); 
+  // ### colors ### //
   $colorRed: firebrick;
   $colorYellow: lightyellow;
   $colorGreen: lightgreen;
@@ -9,7 +10,8 @@
   $colorDarkGrey: #333;
   $colorVeryDarkGrey: #222;
   $colorLighterDarkGrey: #32363A;
-  $colorVeryLightGrey: #EEE; // images
+  $colorVeryLightGrey: #EEE;
+  // ### themes ### //
   @mixin light-theme {
     background-color: $colorVeryLightGrey;
     color: $colorVeryDarkGrey;
@@ -18,7 +20,7 @@
     background-color: $colorBlue;
     color: $colorVeryLightGrey;
   }
-  $imageMapbox: "https://api.mapbox.com/styles/v1/paddy089/cj7df4ztu0oe12rqfvpob5uks/static/11.567849,48.136348,12.51,0.00,0.00/712x400@2x?access_token=pk.eyJ1IjoicGFkZHkwODkiLCJhIjoiY2ozYmkxMTh4MDA1ZTMybXFxYnFpM3BpcSJ9.QFgSlh_GqSr9vM4i2ZSuEg"; // body
+   // ### body, main ### //
   body {
     @include light-theme;
     font-family: 'Dosis', sans-serif;
@@ -60,6 +62,10 @@
     font-size: 4vw;
   }
 
+  .f-uppercase {
+    text-transform: uppercase;
+  }
+
   main {
     overflow-x: hidden;
     overflow-y: scroll;
@@ -71,10 +77,6 @@
         height: 100vh;
         .title-maplab {
           display: inline-flex;
-          text-transform: uppercase;
-          // color: $colorVeryDarkGrey; // :nth-child(3) {
-          //   box-shadow: 0.2rem 0 $colorRed;
-          // }
           .letter {
             padding: 0 .5rem 0 .5rem;
           }
