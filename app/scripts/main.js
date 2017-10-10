@@ -16,13 +16,10 @@
                                 window.msRequestAnimationFrame;
 
   const c01BigTitleChildren = $('.title-maplab').children();
-  const topOffset01 = $('.lab-verb-title-01').offset().top;
-  const topOffset02 = $('.lab-verb-title-02').offset().top;
-  const testOffset = $('#P01-title-01').offset().top;
-  const stop = {
-    'big-title': 750,
-    'title-extra-1': 720,
-    'move-big-title-again': 3200
+  const anchor = {
+    a01: 750,
+    a02: 720,
+    a03: 3200
   };
 
   function parallax() {
@@ -51,7 +48,7 @@
   }
 
   function moveTitle() {
-    if (scrollPosition < stop['big-title']) {
+    if (scrollPosition < anchor.a01) {
       $(c01BigTitleChildren).each(i => {
         const speed = (i === 1 || i === 4) ? 6 : (i === 2 || i === 5) ? 8 : 5;
         const $el = c01BigTitleChildren.eq(i);
@@ -84,9 +81,9 @@
     const $el1 = $('.lab-verb-title-01');
     const $el2 = $('.lab-verb-title-02');
     const $el3 = $('.lab-verb-title-03');
-    const el1_y = scrollPosition / 5;
-    const el2_y = scrollPosition * -1.2;
-    const el3_y = scrollPosition * -1.1;
+    const y1 = scrollPosition / 5;
+    const y2 = scrollPosition * -1.2;
+    const y3 = scrollPosition * -1.1;
 
     // const $this = $('.lab-verb-title-02');
     // const offset = $this.offset().top;
@@ -99,42 +96,20 @@
 
     // console.log(offset);
 
-    if (scrollPosition < stop['title-extra-1']) {
-      setTranslate3d(0, el1_y, 0, $el1);
+    if (scrollPosition < anchor.a02) {
+      setTranslate3d(0, y1, 0, $el1);
     }
 
     if (scrollPosition < 1330) {
-      setTranslate3d(0, el3_y, 0, $el3);
+      setTranslate3d(0, y3, 0, $el3);
     }
 
     if (scrollPosition < 1100) {
-      setTranslate3d(0, el2_y, 0, $el2);
-      // $('.lab-verb-title-02').css({
-      //   transform: 'translate(' + t + 'px)'
-      // });
-      // $('.lab-verb-title-02').css({
-      //   position: 'fixed'
-      // });
-      // const fo = 4;
-      // const fn = fo + (scrollPosition / scrollPosition);
-      // const s = fn + 'wh';
-      // $('.lab-verb-title-02').css({
-      //   'font-size': s
-      // });
-    } else {
-      // $('.lab-verb-title-02').css({
-      //   position: 'absolute'
-      // });
-    }
-    if (scrollPosition > 3200) {
-      // $('.lab-verb-title-01').css({
-      //   transform: 'translateY(' + -1 + 'px)'
-      // });
+      setTranslate3d(0, y2, 0, $el2);
     }
   }
 
   function setTranslate3d(x, y, z, el) {
-    // el.style.transform = 'translate3d(' + x + 'px, ' + y + 'px,' + z + 'px)';
     el.css({
       transform: 'translate3d(' + x + 'px, ' + y + 'px,' + z + 'px)'
     });
@@ -181,6 +156,9 @@
 
   window.addEventListener('orientationchange', testOrientation, false);
   window.addEventListener('scroll', onScroll, false);
+  // $window.on('scroll', () => {
+  //   onScroll();
+  // });
   // skrollr.init();
   // $(window).paroller();
 })();
