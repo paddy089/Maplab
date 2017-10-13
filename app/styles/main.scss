@@ -6,7 +6,6 @@
   $colorRed: firebrick;
   $colorYellow: lightyellow;
   $colorGreen: lightgreen;
-  $colorBlue: #00001a;
   $colorDarkGrey: #333;
   $colorVeryDarkGrey: #222;
   $colorLighterDarkGrey: #32363A;
@@ -77,7 +76,7 @@
     overflow-x: hidden;
     overflow-y: scroll;
     width: 100vw;
-    height: 10000px;
+    // height: 10000px;
     .parallax {
       .test1 {
       
@@ -124,20 +123,36 @@
         overflow-x: hidden;
         height: 100vh;
         margin-top: 100vh;
-        // transform: translateZ(-20px);
-        // -webkit-transform: translateZ(-20px);
-       
-        .lab-verb-title-02 {
-          //left: -100vw;
-          //top: 300vh; //margin-top: 10vh;
-          // transform: translateZ(-1000px);
-          // -webkit-transform: translateZ(-1000px)
-        }
+
         .lab-verb-title-03 {
-          //left: -100vw;
-          //top: 400vh;
           margin-top: 10vh;
-          transform: translateZ(-10px);
+          // transform: translateZ(-100px);
+        }
+      }
+      .last-page {
+        @include flex-center;
+        display: flex;
+        justify-content: center;
+        height: 100vh;
+        width: 100vw;
+        // background-color: $colorVeryLightGrey;
+        .social {
+          ul {
+            list-style: none;
+            display: inline-flex;
+            li {
+              padding: 1vw;
+            }
+          }
+          .facebook {
+            color: blue;
+          }
+          .fk08 {
+            color: green;
+          }
+          .carto {
+            color: magenta;
+          }
         }
       }
     }

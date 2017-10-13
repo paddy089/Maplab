@@ -5,18 +5,15 @@ $(() => {
 
     let scrollPosition = 0;
     let c01LastScrollPos = 0;
-    // let windowHeight = 0;
-    // let windowWidth = 0;
 
     const $window = $(window);
-    // const $body = $('body');
     const requestAnimationFrame = window.requestAnimationFrame ||
       window.mozRequestAnimationFrame ||
       window.webkitRequestAnimationFrame ||
       window.oRequestAnimationFrame ||
       window.msRequestAnimationFrame;
+  
     // ### page elements ### //
-    // const c01BigTitleChildren = $('.title-maplab').children();
     let c01TitleMovement = false;
     const c01BigTitleElements = {};
 
@@ -28,13 +25,7 @@ $(() => {
     };
 
     // ### functions ### //
-    function onScroll() {
-      // requestAnimationFrame(parallax);
-      scrollPosition = $window.scrollTop();
-      console.log('scrollPosition: ' + scrollPosition);
-    }
-
-    function parallax() {
+    function moveIt() {
 
       // moveTitle();
       // moveTitleExtras();
@@ -61,20 +52,12 @@ $(() => {
       // console.log('lastSP: ' + c01LastScrollPos);
 
       if (scrollPosition < anchor.a01) {
-        // c01BigTitleChildren.each(i => {
-        //   const speed = (i === 1 || i === 4) ? 6 : (i === 2 || i === 5) ? 8 : 5;
-        //   const $el = c01BigTitleChildren.eq(i);
-        //   const y = scrollPosition / speed * -1;
-
-        //   setTranslate3d(0, y, 0, $el);
-        // });
-
         Object.keys(c01BigTitleElements).forEach(key => {
           const _key = c01BigTitleElements[key];
           const _el = _key.el;
           const y = scrollPosition / _key.speed * -1;
-          // setTranslate3d(0, y, 0, _el);
-          setTranslate2d(0, y, _el);
+
+          setTranslate3d(0, y, 0, _el);
         });
         c01LastScrollPos = scrollPosition;
         c01TitleMovement = true;
@@ -91,8 +74,7 @@ $(() => {
           const y = Math.round(((scrollPosition - 4900) - _key.lastPosition) * -1);
           console.log('y: ' + y);
 
-          // setTranslate3d(0, y, 0, _el);
-          setTranslate2d(0, y, _el);
+          setTranslate3d(0, y, 0, _el);
         });
         c01TitleMovement = true;
       } else {
@@ -118,27 +100,6 @@ $(() => {
       const vBottom = vTop + $window.height();
       const c03Bottom = c03Top + $c03.outerHeight();
 
-      // console.log('vB : ' + vBottom);
-      // console.log('vT : ' + vTop);
-      // console.log('c03B : ' + c03Bottom);
-      // console.log('<c03T : ' + c03Top);
-      // vBottom < c03Top || vTop > c03Bottom
-
-      // console.log('top: ' + top);
-      // const bottom = top - $window.height();
-      // console.log('bottom: ' + bottom);
-
-      // const $this = $('.lab-verb-title-02');
-      // const offset = $this.offset().top;
-      // const height = $this.outerHeight();
-      // const left = $this.position().left;
-      // const factor = 0.5;
-      // const t = Math.round(((offset - (windowHeight / 2) + height) - scrollPosition) * factor);
-      // // const t = left + tt;
-      // const top = 'top' + offset + 'px';
-
-      // console.log(offset);
-
       if (scrollPosition < anchor.a02) {
         setTranslate3d(0, y1, 0, $el1);
       }
@@ -157,86 +118,39 @@ $(() => {
         setTranslate3d(-x5, elD3.y, 0, $el3);
         setTranslate3d(x5, elD2.y, 0, $el2);
       }
-      // if (scrollPosition > 1400) {
-      //   setTranslate3d(x4, 0, 0, $el4);
-      // }
-      // if (scrollPosition > $(document).height() - $c03.outerHeight()) {
-      //   setTranslate3d(x4, 0, 0, $c04);
-      // }
-      // if (!(vBottom < c03Top || vTop > c03Bottom)) {
-      //   setTranslate3d((x4 / 4), 0, 0, $c04);
-      // }
     }
 
-    function setTranslate3d(x, y, z, $el) {
+    function setTranslate3d(x = 0, y = 0, z = 0, $el = isRequired('jQuery element')) {
       $el.css({
-        transform: 'translate3d(' + x + 'px, ' + y + 'px,' + z + 'px)'
+        transform: 'translate3d(' + x + '%, ' + y + '%, ' + z + 'px)'
       });
     }
 
-    function setTranslate2d(x, y, $el) {
-      $el.css({
-        transform: 'translate(' + x + '%, ' + y + '%)'
-      });
+    function isRequired(name) {
+      throw new Error(name + ' is required!');
     }
 
-    // function setTranslate3d(x, y, z, u, $el) {
-    //   const _u = u;
-    //   if (_u === 'px' || _u === '%') {
-    //     $el.css({
-    //       transform: 'translate3d(' + x + _u + ', ' + y + _u + ',' + z + _u + ')'
-    //     });
-    //   } else {
-    //     throw new Error('Unit has to be "px" or "%" [string]!');
-    //   }
-    // }
-
-    function getTranslateValues(_$el) {
-      const $el = _$el;
-      const transformMatrix = $el.css('-webkit-transform') ||
-        $el.css('-moz-transform') ||
-        $el.css('-ms-transform') ||
-        $el.css('-o-transform') ||
-        $el.css('transform');
+    function getTranslateValues($el) {
+      const _$el = $el;
+      const transformMatrix = _$el.css('-webkit-transform') ||
+        _$el.css('-moz-transform') ||
+        _$el.css('-ms-transform') ||
+        _$el.css('-o-transform') ||
+        _$el.css('transform');
 
       const matrix = transformMatrix.replace(/[^0-9\-.,]/g, '').split(',');
-      // console.log(matrix);
       const dx = parseInt(matrix[12] || matrix[4], 10);
       const dy = parseInt(matrix[13] || matrix[5], 10);
-      // const dx = matrix[12] || matrix[4];
-      // const dy = matrix[13] || matrix[5];
-      // Math.round ??
+
       return {
         x: dx,
         y: dy
       };
     }
 
-    /*   $('html').on('mousewheel', event => {
-      console.log(event.deltaX, event.deltaY, event.deltaFactor);
-      requestAnimationFrame(parallax);
-      scrollPosition = window.pageYOffset;
-    }); */
-
-    /*  $(window).on('resize', () => {
-       // height = parallaxImage.height();
-       // Code to update element values...
-     }); */
-
-    /*   $(window).on('scroll', () => {
-        // 6. Inside the event handler we loop each cached image object from the array
-        // $.each(parallaxImages, function(index, parallaxImage) {
-            // Logic to see which image should currently be shown...
-            // Code to update `transform: translate3d` value...
-      }); */
-
-    /* $(window).on('scroll', () => {
-      requestAnimationFrame(parallax);
-      scrollPosition = window.pageYOffset;
-    }); */
-
-    function testOrientation() {
-      if (screen.width > screen.height) {
+    function testOrientation(width = isRequired('width'), height = isRequired('height')) {
+      const landscape = width > height * 1.44;
+      if (landscape) {
         $('.portrait').hide();
         $('.landscape').show();
         console.log('LANDSCAPE');
@@ -246,11 +160,27 @@ $(() => {
         $('.portrait').show();
       }
     }
-    setupTitleElements();
-    // window.addEventListener('onload', setup, false);
-    // window.addEventListener('orientationchange', testOrientation, false);
-    window.addEventListener('scroll', onScroll, false);
-    skrollr.init();
-    // $(window).paroller();
+
+    function setup() {
+      setupTitleElements();
+      $('.portrait').hide();
+      const sk = skrollr.init({
+        smoothScrolling: true
+      });
+
+      $window.on('resize orientationchange', () => {
+        const width = $window.width() || screen.width;
+        const height = $window.height() || screen.height;
+        testOrientation(width, height);
+      });
+
+      $window.on('scroll', () => {
+        // requestAnimationFrame(moveIt);
+        scrollPosition = $window.scrollTop();
+        console.log('scrollPosition: ' + scrollPosition);
+      });
+    }
+
+    setup();
   })();
 });
