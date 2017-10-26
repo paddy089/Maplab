@@ -149,7 +149,8 @@ $(() => {
     }
 
     function testOrientation(width = isRequired('width'), height = isRequired('height')) {
-      const landscape = width > height * 1.44;
+      // const landscape = width > height * 1.44;
+      const landscape = width > height;
       if (landscape) {
         $('.portrait').hide();
         $('.landscape').show();
