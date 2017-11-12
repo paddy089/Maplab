@@ -150,24 +150,34 @@ $(() => {
 
     function testOrientation(width = isRequired('width'), height = isRequired('height')) {
       // const landscape = width > height * 1.44;
-      const landscape = width > height;
+      const landscape = width > height * 1.3;
       if (landscape) {
         $('.portrait').hide();
-        $('.landscape').show();
-        console.log('LANDSCAPE');
+        $('.parallax').show();
+        // console.log('LANDSCAPE');
       } else {
-        console.log('PORTRAIT');
-        $('.landscape').hide();
+        // console.log('PORTRAIT');
+        $('.parallax').hide();
         $('.portrait').show();
       }
     }
 
     function setup() {
-      setupTitleElements();
       $('.portrait').hide();
-      const sk = skrollr.init({
-        smoothScrolling: true
+      // setupTitleElements();
+      skrollr.init({
+        smoothScrolling: true,
+        scale: 3,
+        forceHeight: false
+        // easings: 'bounce' 
+        // {
+
+        //   easeInQuad: function (t) { 
+        //     return t*t;
+        //   }
+        // }
       });
+      
 
       $window.on('resize orientationchange', () => {
         const width = $window.width() || screen.width;

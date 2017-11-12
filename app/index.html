@@ -2,12 +2,26 @@
 <html class="no-js" lang="de-DE">
 
 <head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109505926-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-109505926-1');
+
+  </script>
   <meta charset="utf-8">
-  <meta name="description" content="">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+  <meta name="description" content="maplab - Labor für Kartographie und Kommunikation der Hochschule München.">
+  <meta name="keywords" content>
+  <meta name="viewport" content="width=device-width, initial-scale=1" , user-scalable=0>
+  <title>maplab - Das Labor für Kartographie und Kommunikation</title>
   <meta name="author" content="Patrick Ring">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1", user-scalable=0>
-  <title>maplab</title>
 
   <!-- Disable tap highlight on IE -->
   <!-- <meta name="msapplication-tap-highlight" content="no"> -->
@@ -17,24 +31,23 @@
 
   <!-- Add to homescreen for Chrome on Android -->
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="application-name" content="Maplab">
-  <!-- <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png"> -->
+  <meta name="application-name" content="maplab">
+  <link rel="icon" sizes="192x192" href="images/touch/apple-touch-icon.png">
 
   <!-- Add to homescreen for Safari on iOS -->
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Maplab">
-  <!-- <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png"> -->
+  <!-- <meta name="apple-mobile-web-app-status-bar-style" content="black"> -->
+  <meta name="apple-mobile-web-app-title" content="maplab">
+  <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
 
   <!-- Tile icon for Win8 (144x144 + tile color) -->
   <!-- <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png"> -->
   <!-- <meta name="msapplication-TileColor" content="#2F3BA2"> -->
 
   <!-- Color the status bar on mobile devices -->
-  <meta name="theme-color" content="#333">
+  <!-- <meta name="theme-color" content="#333"> -->
 
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <!-- Place favicon.ico in the root directory -->
+  <link href="https://fonts.googleapis.com/css?family=Dosis:300,700&amp;subset=latin-ext" rel="stylesheet">
 
   <!-- build:css styles/vendor.css -->
   <!-- bower:css -->
@@ -52,109 +65,199 @@
   <!-- endbuild -->
 </head>
 
-<body>
+<body class="light-theme">
 
   <main>
+    <h1>maplab</h1>
 
     <section class="portrait">
-      <div class="f-bold f-size-m">
-          <p>Please switch to landscape mode</p>
-          <p>for better </p>
-          <p>User Experience</p>
+      <div class="f-regular f-size-m">
+        <p>Please switch to landscape mode</p>
+        <p>for a better </p>
+        <p>User Experience</p>
       </div>
     </section>
 
-    <!-- <section class="landscape"> -->
-      <!-- <section class="info"></section>
-      <section class="header"></section> -->
-    
-      <section class="landscape parallax">
+    <section id="skrollr-body" class="parallax">
 
-        <div class="c-01">
+      <div class="ci-logo-start p-fixed" 
+           data-0p="transform: translate(-62%,50%);" 
+           data-10p="transform: translate(-62%,50%);" 
+           data-170p="transform: translate(-100%,-170%);"
+           data-200p="opacity:1;" data-280p="opacity:0;">
 
-          <!-- <div class="scroll-info fa fa-arrow-circle-o-down">scroll</div> -->
+        <img src="images/maplab_logo_layer_colored.svg" alt="maplab Logo">
+      </div>
 
-          <div class="title-maplab f-uppercase f-bold f-size-l p-fixed">
-            <div data-0="transform: translate(0,00%);" 
-                data-1000="transform: translate(0,-80%);"
-                data-2600="opacity:1;" 
-                data-3400="opacity:0;"
-                class="letter">m</div>
-            <div data-0="transform: translate(0,0%);" 
-                data-1000="transform: translate(0,-40%);"
-                data-2600="opacity:1;" 
-                data-3300="opacity:0;"
-                class="letter">a</div>
-            <div data-0="transform: translate(0,0%);" 
-                data-1000="transform: translate(0,-10%);"
-                data-2600="opacity:1;" 
-                data-3200="opacity:0;"
-                class="letter">p</div>
-            <div data-0="transform: translate(0,0%);" 
-                data-1000="transform: translate(0,-80%);"
-                data-2600="opacity:1;" 
-                data-3400="opacity:0;"
-                class="letter">l</div>
-            <div data-0="transform: translate(0,00%);" 
-                data-1000="transform: translate(0,-40%);"
-                data-2600="opacity:1;" 
-                data-3300="opacity:0;"
-                class="letter">a</div>
-            <div data-0="transform: translate(0,0%);" 
-                data-1000="transform: translate(0,-10%);"
-                data-2600="opacity:1;" 
-                data-3200="opacity:0;"
-                class="letter">b</div>
-          </div>
-          <!-- <div class="svg-title p-fixed"
+
+      <div class="firstPage">
+
+        <!-- <div class="ci-logo p-absolute"
+         data-10p="transform[sqrt]: translate(-10%,0%);"
+         data-170p="transform[sqrt]: translate(-50%,-210%);">
+  
+          <img src="images/maplab_logo_layer_colored.svg" alt="">
+        </div> -->
+
+        <!-- original version -->
+        <!-- <div class="scroll-info fa fa-arrow-circle-o-down">scroll</div> -->
+        <!-- <div class="title-maplab f-uppercase f-bold f-size-l p-fixed">
+          <div data-150="transform: translate(0%,20%);opacity:0;" 
+               data-1000="transform: translate(0%,-80%);opacity:1;" 
+               data-2600="opacity:1;" 
+               data-3400="opacity:0;"
+            class="letter">m</div>
+          <div data-150="transform: translate(0%,20%);opacity:0;" 
+               data-1000="transform: translate(0%,-40%);opacity:1;" 
+               data-2600="opacity:1;" 
+               data-3300="opacity:0;"
+            class="letter">a</div>
+          <div data-150="transform: translate(0%,20%);opacity:0;" 
+               data-1000="transform: translate(0%,-10%);opacity:1;" 
+               data-2600="opacity:1;" 
+               data-3200="opacity:0;"
+            class="letter">p</div>
+          <div data-150="transform: translate(0%,20%);opacity:0;" 
+               data-1000="transform: translate(0%,-80%);opacity:1;" 
+               data-2600="opacity:1;" 
+               data-3400="opacity:0;"
+            class="letter">l</div>
+          <div data-150="transform: translate(0%,20%);opacity:0;" 
+               data-1000="transform: translate(0%,-40%);opacity:1;" 
+               data-2600="opacity:1;" 
+               data-3300="opacity:0;"
+            class="letter">a</div>
+          <div data-150="transform: translate(0%,20%);opacity:0;" 
+               data-1000="transform: translate(0%,-10%);opacity:1;" 
+               data-2600="opacity:1;" 
+               data-3200="opacity:0;"
+            class="letter">b</div>
+        </div> -->
+        <div class="title-maplab f-uppercase f-bold f-size-l p-fixed">
+          <div data-0p="transform: translate(0%,20%);;" data-70p="transform: translate(0%,-80%);" data-75p="opacity:1;" data-120p="opacity:0;"
+            class="letter">m</div>
+          <div data-0p="transform: translate(0%,20%);" data-70p="transform: translate(0%,-40%);" data-75p="opacity:1;" data-110p="opacity:0;"
+            class="letter">a</div>
+          <div data-0p="transform: translate(0%,20%);" data-70p="transform: translate(0%,-10%);" data-75p="opacity:1;" data-100p="opacity:0;"
+            class="letter">p</div>
+          <div data-0p="transform: translate(0%,20%);" data-70p="transform: translate(0%,-80%);" data-75p="opacity:1;" data-120p="opacity:0;"
+            class="letter">l</div>
+          <div data-0="transform: translate(0%,20%);" data-70p="transform: translate(0%,-40%);" data-75p="opacity:1;" data-110p="opacity:0;"
+            class="letter">a</div>
+          <div data-0p="transform: translate(0%,20%);" data-70p="transform: translate(0%,-10%);" data-75p="opacity:1;" data-100p="opacity:0;"
+            class="letter">b</div>
+        </div>
+        <!-- <div class="svg-title p-fixed"
                data-2600="opacity:1;" 
                data-3400="opacity:0;">
             <svg width="100%" height="100%" viewBox="0 0 281 133" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
               <path data-0="stroke-dashoffset:6000;" data-6000="stroke-dashoffset:0;" d="M4,75c0,0 -7.688,-51.559 3,-57c10.688,-5.441 14.072,-23.136 22,-6c7.928,17.136 -7.337,30.276 12.305,19c19.642,-11.276 15.677,-54.843 32.695,-12c17.018,42.843 3.195,104.077 17,55c13.805,-49.077 -29.895,-50.805 29,-54c58.895,-3.195 78.486,-16.66 82.883,2c4.397,18.66 4.352,23.248 -14.66,44c-19.013,20.752 -36.355,61.445 -50.223,23c-13.868,-38.445 -65.587,-32.298 -18,-25c47.587,7.298 20.934,-21.142 58.838,13.614c37.903,34.756 71.653,90.248 65.723,23.386c-5.93,-66.862 35.439,-66 35.439,-66" style="fill:none;stroke:#000;stroke-width:.2rem;stroke-dasharray:6000px; stroke-dashoffset: 6000px;"/>
             </svg>
           </div> -->
+      </div>
+      <!-- original version -->
+      <!-- <div class="c1
+ border-test">
+        <div class="lab-verb-title-01 p-fixed f-size-sm" 
+             data-0="transform: translate(0%,-100%);" 
+             data-1000="transform: translate(0%,200%);display:block;"
+             data-2500 
+             data-3500="transform: translate(0%,-100%);display:none;">
+             Das Labor für</div>
+        <div class="lab-verb-title-02 p-fixed f-size-sm" 
+             data-0="transform: translate(0%,0%);" 
+             data-2000="transform: translate(0%,-1400%);"
+             data-2700="transform: translate(0%,-1400%);" 
+             data-3500="transform: translate(200%,-1400%);">
+             der Hochschule München</div>
+        <div class="lab-verb-title-03 p-fixed f-size-m" 
+             data-0="transform: translate(0%,0%);" 
+             data-1350="transform: translate(0%,-1300%);"
+             data-2700="transform: translate(0%,-1300%);" 
+             data-3500="transform: translate(-200%,-1300%);">
+             Kartographie & Kommunikation</div>
+      </div> -->
+
+      <div class="c1 border-test">
+        <div class="lab-verb-title-01 p-fixed f-size-sm" data-800="transform[sqrt]: translate(-400%,-1650%);" data-1350="transform[sqrt]: translate(-140%,-1650%);"
+          data-2000="transform: translate(-140%,-1650%);" data-3000="transform: translate(-400%,-1650%);">
+          Das Labor für</div>
+        <div class="lab-verb-title-02 p-fixed f-size-sm" data-1000="transform[sqrt]: translate(500%,-1650%);" data-1350="transform[sqrt]: translate(220%,-1650%);"
+          data-2000="transform: translate(220%,-1650%);" data-3000="transform: translate(500%,-1650%);">
+          der FK08</div>
+        <div class="lab-verb-title-03 p-fixed f-size-m" data-0="transform[sqrt]: translate(0%,0%);" data-1350="transform[sqrt]: translate(0%,-1300%);"
+          data-2000="transform[sqrt]: translate(0%,-1300%);" data-3000="transform[sqrt]: translate(0%,-2000%);" data-600p="opacity:1;"
+          data-650p="opacity:0;">
+          Kartographie & Kommunikation</div>
+      </div>
+
+      <!-- <div class="c1
+1 bg-light viewport-page border-test"></div> -->
+
+      <div class="c2 bg-blue border-test"></div>
+
+      <div class="c3 bg-green f-size-s border-test">
+        <!-- Sammlung von Stichwörtern -->
+        <div class="words-collection p-fixed border-test-m">
+          <!-- <div class="word">HHHHHHH</div> -->
+          <!-- <div class="word w1"
+              data-_c05-100p-top="transform: translate(10%,30%);opacity:0;"
+              data-_c05-10p-top="transform: translate(10%,30%);opacity:1;">
+              storytelling
+          </div> -->
+          <!-- <div class="word w2"
+              data-_c05-100p-top="transform: translate(10%,50%);opacity:0;"
+              data-_c05-10p-top="transform: translate(10%,50%);opacity:1;">
+              kommunikation
+          </div> -->
+          <!-- <div class="word w3">geomarketing</div>
+          <div class="word">geovisualisierung</div>
+          <div class="word">kartographie</div> -->
+        </div>
+      </div>
+
+      <div class="lastPage">
+
+        <div class="ci-logo-end p-fixed" 
+             data-650p="transform[sqrt]: translate(15%,500%);opacity:0;" 
+             data-100-end="transform[sqrt]: translate(15%,0%);opacity:1;">
+
+          <img src="images/maplab_logo_layer_colored.svg" alt="">
         </div>
 
-
-        <div class="c-02"> 
-          <div class="lab-verb-title-01 p-fixed f-size-m"
-               data-0="transform: translate(0,-100%);" 
-               data-1000="transform: translate(0,210%);display:block;" 
-               data-2500 
-               data-3500="transform: translate(0,-100%);display:none;" >Das Labor für</div>
-          <div class="lab-verb-title-02 p-fixed f-size-m"
-               data-0="transform: translate(0,0%);" 
-               data-2000="transform: translate(0,-1400%);"
-               data-2700="transform: translate(0%,-1400%);"
-               data-3500="transform: translate(200%,-1400%);">der Hochschule München</div>
-          <div class="lab-verb-title-03 p-fixed f-size-m"
-               data-0="transform: translate(0,0%);" 
-               data-2000="transform: translate(0,-1950%);display:block;"
-               data-2700="transform: translate(0%,-1950%);"
-               data-3500="transform: translate(-200%,-1950%);">Kartografie & Kommunikation</div>
-        </div>
-
-        <div class="c03"></div>
-        <div class="c04"></div>
-        <div class="lastPage f-size-m">
-          <div class="ci-logo" data-_lastPage-100p-top="opacity:0;" 
-                               data-_lastPage-10p-top="opacity:1;">
-              <!-- <i data-_lastPage-100p-top="opacity:0;" 
-                 data-_lastPage-10p-top="opacity:1;" class="fa fa-bicycle fa-2x"></i> -->
-              <img src="images/maplab_logo_layer_colored.svg" alt="">
+        <div class="social text-1 p-fixed" data-650p="transform[sqrt]: translate(300%,0%);" data-400-end="transform[sqrt]: translate(0%,0%);">
+          <div class="inner">
+            <div class="arrow" data-790p="transform[sqrt]: rotateY(180deg);padding-left: 1rem;padding-right: 0rem;" data-100-end="transform[sqrt]: rotateY(0deg);padding-left: 0rem;padding-right: 2rem;">>
+            </div>Besuch uns auf
+            <a class="afb" href="https://www.facebook.com/Fakultät-für-Geoinformation-Hochschule-München-221407001366055/" target="_blank">
+              <i class="facebook fa fa-facebook-square"></i>
+            </a>
           </div>
-          
-          <div class="social">
-            <ul>
-              <li><i class="facebook fa fa-facebook-square"></i></li>
-              <li><i class="fk08 fa fa-facebook-square"></i></li>
-              <li><i class="carto fa fa-facebook-square"></i></li>
-            </ul>     
-          </div>
-           
         </div>
-      </section>
-    <!-- </section> -->
+
+        <div class="social text-2 p-fixed" data-650p="transform[sqrt]: translate(300%,0%);" data-180-end="transform[sqrt]: translate(0%,0%);">
+          <div class="inner">
+            <div class="arrow" data-790p="opacity:0;padding-right: 0rem;" data-100-end="opacity:1;padding-right: 2rem;">>
+            </div>Stöber durch studentische
+            <a href="#" target="_blank">Projekte</a>
+          </div>
+        </div>
+
+        <div class="social text-3 p-fixed" data-650p="transform[sqrt]: translate(300%,0%);" data-110-end="transform[sqrt]: translate(0%,0%);">
+          <div class="inner">
+            <div class="arrow" data-790p="opacity:0.2;padding-right: 4rem;" data-100-end="opacity:1;padding-right: 2rem;">>
+            </div>Oder informier dich über unseren
+            <a href="http://www.geo.hm.edu/studienangebote/kartographie_und_geomedientechnik/index.de.html" target="_blank">
+              Studiengang
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- </div> -->
+      </div>
+
+    </section>
   </main>
 
   <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
@@ -181,10 +284,7 @@
   <!-- bower:js -->
   <script src="/bower_components/modernizr/modernizr.js"></script>
   <script src="/bower_components/jquery/dist/jquery.js"></script>
-  <script src="/bower_components/jquery.stellar/jquery.stellar.js"></script>
   <script src="/bower_components/skrollr/src/skrollr.js"></script>
-  <script src="/bower_components/paroller.js/dist/jquery.paroller.js"></script>
-  <script src="/bower_components/jquery.transit/jquery.transit.js"></script>
   <!-- endbower -->
   <!-- endbuild -->
 

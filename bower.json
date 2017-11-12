@@ -6,10 +6,7 @@
     "jquery": "^3.2.1",
     "normalize-css": "^7.0.0",
     "components-font-awesome": "^4.7.0",
-    "jquery.stellar": "^0.6.2",
-    "skrollr": "^0.6.30",
-    "paroller.js": "^1.2.1",
-    "jquery.transit": "^0.9.12"
+    "skrollr": "^0.6.30"
   },
   "devDependencies": {}
 }
