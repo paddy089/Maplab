@@ -1,8 +1,9 @@
 
 .tmp/
 coverage/
-# dist/
+dist/
 .idea/
+build/
 
 
 # Created by https://www.gitignore.io/api/git,node,sass,bower,macos
