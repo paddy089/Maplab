@@ -150,7 +150,7 @@ $(() => {
 
     function testOrientation(width = isRequired('width'), height = isRequired('height')) {
       // const landscape = width > height * 1.44;
-      const landscape = width > height * 1.3;
+      const landscape = width > height * 1.2;
       if (landscape) {
         $('.portrait').hide();
         $('.parallax').show();
@@ -169,13 +169,6 @@ $(() => {
         smoothScrolling: true,
         scale: 3,
         forceHeight: false
-        // easings: 'bounce' 
-        // {
-
-        //   easeInQuad: function (t) { 
-        //     return t*t;
-        //   }
-        // }
       });
       
 
