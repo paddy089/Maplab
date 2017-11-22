@@ -5,6 +5,7 @@ const del = require('del');
 const wiredep = require('wiredep').stream;
 const runSequence = require('run-sequence');
 const ghPages = require('gulp-gh-pages');
+const gzip = require('gulp-gzip');
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -92,6 +93,7 @@ gulp.task('html', ['styles', 'scripts'], () => {
       removeScriptTypeAttributes: true,
       removeStyleLinkTypeAttributes: true
     })))
+    // .pipe(gzip())
     .pipe(gulp.dest('build'));
 });
 
@@ -190,8 +192,9 @@ gulp.task('wiredep', () => {
     .pipe(gulp.dest('app'));
 });
 
+// Funktioniert noch nicht !!!!
 gulp.task('deploy', () => {
-  return gulp.src('build/**/*')
+  gulp.src('build/**/*')
     .pipe(ghPages());
 });
 
