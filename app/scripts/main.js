@@ -3,26 +3,30 @@ $(() => {
   (function () {
     'use strict';
 
-    let scrollPosition = 0;
-    let c01LastScrollPos = 0;
+    // let scrollPosition = 0;
+    // let c01LastScrollPos = 0;
 
     const $window = $(window);
-    const requestAnimationFrame = window.requestAnimationFrame ||
-      window.mozRequestAnimationFrame ||
-      window.webkitRequestAnimationFrame ||
-      window.oRequestAnimationFrame ||
-      window.msRequestAnimationFrame;
-  
+    const words = document.getElementsByClassName('word');
+    console.log(words);
+    let wordArray = [];
+    let currentWord = 0;
+    // const requestAnimationFrame = window.requestAnimationFrame ||
+    //   window.mozRequestAnimationFrame ||
+    //   window.webkitRequestAnimationFrame ||
+    //   window.oRequestAnimationFrame ||
+    //   window.msRequestAnimationFrame;
+
     // ### page elements ### //
-    let c01TitleMovement = false;
-    const c01BigTitleElements = {};
+    // let c01TitleMovement = false;
+    // const c01BigTitleElements = {};
 
     // animation anchors
-    const anchor = {
-      a01: 750,
-      a02: 720,
-      a03: 3200
-    };
+    // const anchor = {
+    //   a01: 750,
+    //   a02: 720,
+    //   a03: 3200
+    // };
 
     // ### functions ### //
     function moveIt() {
@@ -36,7 +40,6 @@ $(() => {
       const children = $('.title-maplab').children();
       children.each(i => {
         const factor = (i === 1 || i === 4) ? 6 : (i === 2 || i === 5) ? 8 : 5;
-        // const factor = 2;
         const $el = children.eq(i);
         const key = 'el' + i;
         obj[key] = {
@@ -45,12 +48,9 @@ $(() => {
           lastPosition: 0
         };
       });
-      // console.log(c01BigTitleElements);
     }
 
     function moveTitle() {
-      // console.log('lastSP: ' + c01LastScrollPos);
-
       if (scrollPosition < anchor.a01) {
         Object.keys(c01BigTitleElements).forEach(key => {
           const _key = c01BigTitleElements[key];
@@ -82,43 +82,101 @@ $(() => {
       }
     }
 
-    function moveTitleExtras() {
-      const $el1 = $('.lab-verb-title-01');
-      const $el2 = $('.lab-verb-title-02');
-      const $el3 = $('.lab-verb-title-03');
-      // const $el4 = $('.x-scroll');
-      const $c03 = $('.c-03');
-      const $c04 = $('.c-04');
-      const y1 = scrollPosition / 5;
-      const y2 = scrollPosition * -1.2;
-      const y3 = scrollPosition * -1.1;
-      const x4 = scrollPosition / 10;
-      const x5 = scrollPosition / 15;
-      const c03Top = $c03.offset().top;
-
-      const vTop = $window.scrollTop();
-      const vBottom = vTop + $window.height();
-      const c03Bottom = c03Top + $c03.outerHeight();
-
-      if (scrollPosition < anchor.a02) {
-        setTranslate3d(0, y1, 0, $el1);
+    // #### words animation #### //
+    function splitLetters(word) {
+      const content = word.innerHTML;
+      word.innerHTML = '';
+      let letters = [];
+      for (let i = 0; i < content.length; i++) {
+        const letter = document.createElement('span');
+        letter.className = 'letter';
+        letter.innerHTML = content.charAt(i);
+        word.appendChild(letter);
+        letters.push(letter);
       }
-
-      if (scrollPosition < 1330) {
-        setTranslate3d(0, y3, 0, $el3);
-      }
-
-      if (scrollPosition < 1100) {
-        setTranslate3d(0, y2, 0, $el2);
-      }
-
-      if (scrollPosition > 1400) {
-        const elD3 = getTranslateValues($el3);
-        const elD2 = getTranslateValues($el2);
-        setTranslate3d(-x5, elD3.y, 0, $el3);
-        setTranslate3d(x5, elD2.y, 0, $el2);
-      }
+      return letters
     }
+
+    function changeWord() {
+      console.log('changeWord');
+      const cw = wordArray[currentWord];
+      const nw = currentWord == words.length - 1 ? wordArray[0] : wordArray[currentWord + 1];
+      for (var i = 0; i < cw.length; i++) {
+        animateLetterOut(cw, i);
+      }
+
+      for (var i = 0; i < nw.length; i++) {
+        nw[i].className = 'letter behind';
+        nw[0].parentElement.style.opacity = 1;
+        animateLetterIn(nw, i);
+      }
+
+      currentWord = (currentWord == wordArray.length - 1) ? 0 : currentWord + 1;
+    }
+
+    function animateLetterOut(cw, i) {
+      setTimeout(function () {
+        cw[i].className = 'letter out';
+      }, i * 80);
+    }
+
+    function animateLetterIn(nw, i) {
+      setTimeout(function () {
+        nw[i].className = 'letter in';
+      }, 340 + (i * 80));
+    }
+
+    function startMapsWordsAnimation() {
+      // let currentWord = 0;
+
+      words[currentWord].style.opacity = 1;
+      for (let i = 0; i < words.length; i++) {
+        wordArray.push(splitLetters(words[i]));
+      }
+      console.log(wordArray);
+  
+      changeWord();
+      setInterval(changeWord, 4000);
+    }
+
+    function startScrollMeAnimation() {
+      const words = document.getElementsByClassName('word-scrollme');
+      console.log(words);
+      let wordArray = [];
+      let currentWord = 0;
+      console.log(words[currentWord]);
+
+      words[currentWord].style.opacity = 1;
+      for (let i = 0; i < words.length; i++) {
+        wordArray.push(splitLetters(words[i]));
+      }
+      console.log(wordArray);
+
+      changeWord(wordArray, words);
+      setInterval(changeWord(wordArray, words), 4000);
+    }
+
+    // #### ####
+    // #### typewriter
+    function typeWriter(text, n) {
+      const l = text.length;
+      if (n === l) {
+        n = 0;
+        setTimeout(function () {
+          typeWriter(text, n)
+        }, 3500);
+      } else {  
+        if (n < l) {
+        const sub = text.substring(0, n + 1);
+        $('.tp').html(sub);
+        n++;
+        setTimeout(function () {
+          typeWriter(text, n)
+        }, 200);
+      }}
+    
+    }
+    // #### ####
 
     function setTranslate3d(x = 0, y = 0, z = 0, $el = isRequired('jQuery element')) {
       $el.css({
@@ -170,19 +228,30 @@ $(() => {
         scale: 3,
         forceHeight: false
       });
-      
+
 
       $window.on('resize orientationchange', () => {
         const width = $window.width() || screen.width;
-        const height = $window.height() || screen.height;
-        testOrientation(width, height);
+        const height = $window.height() ||  screen.height;
+        // testOrientation(width, height);
       });
 
-      $window.on('scroll', () => {
+      // $window.on('scroll', () => {
         // requestAnimationFrame(moveIt);
-        scrollPosition = $window.scrollTop();
-        console.log('scrollPosition: ' + scrollPosition);
-      });
+        // scrollPosition = $window.scrollTop();
+        // console.log('scrollPosition: ' + scrollPosition);
+      // });
+
+      // startScrollMeAnimation();
+      startMapsWordsAnimation();
+
+      // #### start typewriter #### //
+      // const tp_text = $('.tp').data('text');
+      // console.log(tp_text);
+      // typeWriter(tp_text, 0);
+      // const tp_text = $('.typeitinner').data('text');
+      // console.log(tp_text);
+      // typeWriter(tp_text, 0);
     }
 
     setup();

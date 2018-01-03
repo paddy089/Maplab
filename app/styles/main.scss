@@ -2,7 +2,9 @@
   // endbower
   // ### colors ### //
   $colorCI_green: #77B64A;
-  $colorCI_orange: #FD9F68;
+  $colorCI_orange: #FF7A00;
+  $colorCI_yellow: #FFC745;
+  $colorCI_purple: #86415E;
   $colorCI_blue: #ADD7DA;
   $colorCI_darkorange: #FC7542;
   $colorVeryDarkGrey: #32363A;
@@ -10,12 +12,13 @@
   $colorLighterDarkGrey: #32363A;
   $colorVeryLightGrey: #EEE; // ### themes ### //
   .light-theme {
-    background-color: $colorVeryLightGrey;
+    // background-color: $colorVeryLightGrey;
+    background-color: white;
     color: $colorVeryDarkGrey;
   }
 
   .dark-theme {
-    background-color: $colorCI_blue;
+    background-color: $colorVeryDarkGrey;
     color: $colorVeryLightGrey;
   } // ### mixins ### //
   @mixin flex-center {
@@ -60,6 +63,10 @@
     font-weight: 300;
   }
 
+  .f-size-xl {
+    font-size: 25vh; // font-size: 10rem;
+  }
+
   .f-size-l {
     // font-size: 15vh;
     font-size: 7.5rem;
@@ -71,8 +78,7 @@
   }
 
   .f-size-sm {
-    // font-size: 7vh;
-    font-size: 3.25rem;
+    font-size: 7vh; // font-size: 3.25rem;
   }
 
   .f-size-s {
@@ -142,7 +148,6 @@
           @include flex-center;
           @include size-viewport;
           .snowflakes {
-            color: #000;
             font-size: 1em;
             font-family: Arial;
             text-shadow: 0 0 1px #000;
@@ -254,8 +259,10 @@
           //   }
           // }
           .svg-title {
-            height: 30vh;
-            width: 80%;
+            height: 20vh;
+            width: 60%;
+            top: 5%;
+            left: 50%;
           } // .ci-logo {
           //   // top: 20vh;
           //   // z-index: 99;
@@ -276,7 +283,8 @@
           }
           .lab-verb-title-03 {
             transform: translateZ(-20px);
-            font-size: 4rem;
+            // font-size: 4rem;
+            font-size: 5vw;
           }
         }
         .c2 {
@@ -294,7 +302,8 @@
         .lastPage {
           @include size-viewport; // position: relative;
           height: 200vh;
-          font-size: 3rem;
+          // font-size: 3rem;
+          font-size: 4vw;
           .text-1 {
             top: 40vh;
           }
@@ -323,16 +332,16 @@
                 padding-left: 1rem;
               }
               a:link {
-                color: $colorCI_green;
+                color: $colorCI_purple;
               }
               a:visited {
-                color: $colorCI_green;
+                color: $colorCI_purple;
               }
               a:hover {
                 color: $colorCI_orange;
-                 :first-child {
-                  color: $colorCI_blue;
-                }
+                //  :first-child {
+                //   color: $colorCI_purple;
+                // }
               }
               .facebook {
                 font-size: 3rem;
@@ -349,6 +358,126 @@
             }
           }
         }
+        // text scrollme animation
+        .text-scrollme {
+          font-size: 5vh;
+          position: fixed;
+          width: 450px;
+          left: 60%;
+          margin-left: -20%;
+          height: 40px;
+          top: 20%;
+          margin-top: -20px;
+
+          p {
+            display: inline-block;
+            vertical-align: top;
+            margin: 0;
+          }
+          .word {
+            position: absolute;
+            width: 220px;
+            opacity: 0;
+          }
+          .letter {
+            display: inline-block;
+            position: relative; // float: left;
+            transform: translateZ(25px);
+            transform-origin: 50% 50% 25px;
+          }
+          .letter.out {
+            transform: rotateX(90deg);
+            transition: transform 0.32s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+          }
+          .letter.behind {
+            transform: rotateX(-90deg);
+          }
+          .letter.in {
+            transform: rotateX(0deg);
+            transition: transform 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          }
+        } 
+
+        // Textanimation
+        .text {
+          font-size: 5vh;
+          position: fixed;
+          width: 450px;
+          left: 30%;
+          margin-left: -20%;
+          height: 40px;
+          top: 25vh;
+          margin-top: -20px;
+
+          p {
+            display: inline-block;
+            vertical-align: top;
+            margin: 0;
+          }
+          .word {
+            position: absolute;
+            width: 220px;
+            opacity: 0;
+          }
+          .letter {
+            display: inline-block;
+            position: relative; // float: left;
+            transform: translateZ(25px);
+            transform-origin: 50% 50% 25px;
+          }
+          .letter.out {
+            transform: rotateX(90deg);
+            transition: transform 0.32s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+          }
+          .letter.behind {
+            transform: rotateX(-90deg);
+          }
+          .letter.in {
+            transform: rotateX(0deg);
+            transition: transform 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          }
+        }
+
+        .purple {
+          color: #86415E;
+        }
+        .pomegranate {
+          color: #FF7A00;
+        }
+        .citrus {
+          color: #FFC745;
+        }
+        .green {
+          color: #16a085;
+        }
+        .midnight {
+          color: #215d96;
+        }
+        .belize {
+          color: #2980b9;
+        }
+        
+        // typewriter
+        .tp-wrap {
+          z-index: 9999;
+          // color: $colorVeryDarkGrey;
+          // margin: 30px auto;
+          // text-align: center;
+          // font-size: 20px;
+          position: fixed;
+          width: 800px;
+          left: 30%;
+          margin-left: -20%;
+          height: 30px;
+          top: 10%;
+          // margin-top: -20px;
+          .tp {
+            height: 30px;
+            // margin-top: 10px;
+            text-align: left;
+          }
+        }
+        
       }
     }
   } // @media all and (orientation:portrait) {
@@ -372,37 +501,37 @@
   @media all and (min-width: 1690px) {}
 
   @media all and (min-width: 1400px) {
-    body {
-      font-size: 100%;
-    }
+    // body {
+    //   font-size: 100%;
+    // }
   }
 
   @media all and (min-width: 980px) {
-    body {
-      font-size: 62.5%;
-    } // .f-size-s {
-    //   font-size: 2.8rem;
+    // body {
+    //   font-size: 62.5%;
+    // } // .f-size-s {
+    // //   font-size: 2.8rem;
+    // // }
+    // .ci-logo-end {
+    //   right: 15%;
+    //   top: -2vh;
+    //   img {
+    //     width: 110%;
+    //     height: auto;
+    //   }
     // }
-    .ci-logo-end {
-      right: 15%;
-      top: -2vh;
-      img {
-        width: 110%;
-        height: auto;
-      }
-    }
   }
 
   @media all and (min-width: 736px) {
-    body {
-      font-size: 50%;
-    }
+    // body {
+    //   font-size: 50%;
+    // }
   }
 
   @media all and (min-width: 480px) {
-    body {
-      font-size: 37.5%;
-    } // .f-size-m {
+    // body {
+    //   font-size: 37.5%;
+    // } // .f-size-m {
     //   // font-size: 8vh;
     //   font-size: 2rem;
     // }
