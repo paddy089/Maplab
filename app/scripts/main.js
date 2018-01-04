@@ -2,87 +2,19 @@
 $(() => {
   (function () {
     'use strict';
+    
+    // enable/disable console logging
+    const LOGGING = true;
 
-    // let scrollPosition = 0;
-    // let c01LastScrollPos = 0;
-
+    // global window object
     const $window = $(window);
+
+    // words animation variables
     const words = document.getElementsByClassName('word');
-    console.log(words);
     let wordArray = [];
     let currentWord = 0;
-    // const requestAnimationFrame = window.requestAnimationFrame ||
-    //   window.mozRequestAnimationFrame ||
-    //   window.webkitRequestAnimationFrame ||
-    //   window.oRequestAnimationFrame ||
-    //   window.msRequestAnimationFrame;
 
-    // ### page elements ### //
-    // let c01TitleMovement = false;
-    // const c01BigTitleElements = {};
-
-    // animation anchors
-    // const anchor = {
-    //   a01: 750,
-    //   a02: 720,
-    //   a03: 3200
-    // };
-
-    // ### functions ### //
-    function moveIt() {
-
-      // moveTitle();
-      // moveTitleExtras();
-    }
-
-    function setupTitleElements() {
-      const obj = c01BigTitleElements;
-      const children = $('.title-maplab').children();
-      children.each(i => {
-        const factor = (i === 1 || i === 4) ? 6 : (i === 2 || i === 5) ? 8 : 5;
-        const $el = children.eq(i);
-        const key = 'el' + i;
-        obj[key] = {
-          el: $el,
-          speed: factor,
-          lastPosition: 0
-        };
-      });
-    }
-
-    function moveTitle() {
-      if (scrollPosition < anchor.a01) {
-        Object.keys(c01BigTitleElements).forEach(key => {
-          const _key = c01BigTitleElements[key];
-          const _el = _key.el;
-          const y = scrollPosition / _key.speed * -1;
-
-          setTranslate3d(0, y, 0, _el);
-        });
-        c01LastScrollPos = scrollPosition;
-        c01TitleMovement = true;
-      } else if (scrollPosition > 4900) {
-        Object.keys(c01BigTitleElements).forEach(key => {
-          const _key = c01BigTitleElements[key];
-          const _el = _key.el;
-
-          if (!c01TitleMovement) {
-            const d = getTranslateValues(_el);
-            _key.lastPosition = d.y; // Math.round(d.y);
-            console.log(_key.lastPosition);
-          }
-          const y = Math.round(((scrollPosition - 4900) - _key.lastPosition) * -1);
-          console.log('y: ' + y);
-
-          setTranslate3d(0, y, 0, _el);
-        });
-        c01TitleMovement = true;
-      } else {
-        c01TitleMovement = false;
-      }
-    }
-
-    // #### words animation #### //
+    // #### words animation functions #### //
     function splitLetters(word) {
       const content = word.innerHTML;
       word.innerHTML = '';
@@ -98,7 +30,8 @@ $(() => {
     }
 
     function changeWord() {
-      console.log('changeWord');
+      if (LOGGING) console.log('changeWord');
+
       const cw = wordArray[currentWord];
       const nw = currentWord == words.length - 1 ? wordArray[0] : wordArray[currentWord + 1];
       for (var i = 0; i < cw.length; i++) {
@@ -127,37 +60,39 @@ $(() => {
     }
 
     function startMapsWordsAnimation() {
-      // let currentWord = 0;
-
       words[currentWord].style.opacity = 1;
       for (let i = 0; i < words.length; i++) {
         wordArray.push(splitLetters(words[i]));
       }
-      console.log(wordArray);
   
       changeWord();
       setInterval(changeWord, 4000);
     }
+    // #### END words animation functions #### //
 
+    // #### scroll me words animation functions #### //
     function startScrollMeAnimation() {
       const words = document.getElementsByClassName('word-scrollme');
-      console.log(words);
       let wordArray = [];
       let currentWord = 0;
-      console.log(words[currentWord]);
 
       words[currentWord].style.opacity = 1;
       for (let i = 0; i < words.length; i++) {
         wordArray.push(splitLetters(words[i]));
       }
-      console.log(wordArray);
+
+      if (LOGGING) {
+        console.log(words);
+        console.log(words[currentWord]);
+        console.log(wordArray);
+      }
 
       changeWord(wordArray, words);
       setInterval(changeWord(wordArray, words), 4000);
     }
+    // #### END scroll me words animation functions #### //
 
-    // #### ####
-    // #### typewriter
+    // #### typewriter functions #### //
     function typeWriter(text, n) {
       const l = text.length;
       if (n === l) {
@@ -174,10 +109,10 @@ $(() => {
           typeWriter(text, n)
         }, 200);
       }}
-    
     }
-    // #### ####
+    // #### END typewriter functions #### //
 
+    // #### custom css transform functions #### //
     function setTranslate3d(x = 0, y = 0, z = 0, $el = isRequired('jQuery element')) {
       $el.css({
         transform: 'translate3d(' + x + '%, ' + y + '%, ' + z + 'px)'
@@ -205,35 +140,32 @@ $(() => {
         y: dy
       };
     }
+    // #### END custom css transform functions #### //
 
-    function testOrientation(width = isRequired('width'), height = isRequired('height')) {
-      // const landscape = width > height * 1.44;
-      const landscape = width > height * 1.2;
+    // check device orientation
+    function testOrientation() {
+      const width = $window.width() || screen.width;
+      const height = $window.height() ||  screen.height;
+      const ratio = width / height;
+      const landscape = ratio >= 1.25 && ratio <= 2.3;
       if (landscape) {
         $('.portrait').hide();
         $('.parallax').show();
-        // console.log('LANDSCAPE');
       } else {
-        // console.log('PORTRAIT');
         $('.parallax').hide();
         $('.portrait').show();
       }
     }
 
+    // initalize stuff
     function setup() {
-      $('.portrait').hide();
-      // setupTitleElements();
+      testOrientation();
+
       skrollr.init({
         smoothScrolling: true,
-        scale: 3,
-        forceHeight: false
-      });
-
-
-      $window.on('resize orientationchange', () => {
-        const width = $window.width() || screen.width;
-        const height = $window.height() ||  screen.height;
-        // testOrientation(width, height);
+        scale: 1,
+        forceHeight: false,
+        mobileDeceleration: 0.004
       });
 
       // $window.on('scroll', () => {
@@ -252,6 +184,10 @@ $(() => {
       // const tp_text = $('.typeitinner').data('text');
       // console.log(tp_text);
       // typeWriter(tp_text, 0);
+
+      $window.on('resize orientationchange', () => {
+        testOrientation();
+      });
     }
 
     setup();
