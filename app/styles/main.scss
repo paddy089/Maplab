@@ -234,6 +234,7 @@
             width: 80%;
             height: auto;
             left: 15%;
+            // top: 60vh;
             will-change: transform;
             transform: translateZ(0);
             .inner {
@@ -264,15 +265,13 @@
             }
           }
           .ci-logo-end {
-            right: 8%;
-            top: -15%;
-            width: 80%;
-            height: auto;
+            width: 100%;
+            height: 100%;
             // border: 2px solid red;
-            img {
-              width: 100%;
-              height: auto;
-            }
+            // img {
+            //   width: 100%;
+            //   height: 100%;
+            // }
           }
         } // Textanimation
         .text {
@@ -282,7 +281,7 @@
           left: 30%;
           margin-left: -20%;
           height: 40px;
-          top: 25vh;
+          top: 20vh;
           margin-top: -20px;
           p {
             display: inline-block;
