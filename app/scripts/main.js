@@ -4,7 +4,7 @@ $(() => {
     'use strict';
     
     // enable/disable console logging
-    const LOGGING = true;
+    const LOGGING = false;
 
     // global window object
     const $window = $(window);
@@ -66,7 +66,7 @@ $(() => {
       }
   
       changeWord();
-      setInterval(changeWord, 4000);
+      setInterval(changeWord, 3000);
     }
     // #### END words animation functions #### //
 
@@ -159,7 +159,7 @@ $(() => {
 
     // initalize stuff
     function setup() {
-      testOrientation();
+      //testOrientation();
 
       skrollr.init({
         smoothScrolling: true,
@@ -185,9 +185,9 @@ $(() => {
       // console.log(tp_text);
       // typeWriter(tp_text, 0);
 
-      $window.on('resize orientationchange', () => {
-        testOrientation();
-      });
+      // $window.on('resize orientationchange', () => {
+      //   testOrientation();
+      // });
     }
 
     setup();
