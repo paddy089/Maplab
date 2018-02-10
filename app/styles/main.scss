@@ -4,6 +4,9 @@
   $colorCI_orange: #FF7A00;
   $colorCI_yellow: #FFC745;
   $colorCI_purple: #86415E;
+  $colorCI_red: #FF3101;
+  $colorCI_brown: #862906;
+  $colorCI_brown_top: #712418;
   $colorVeryDarkGrey: #32363A;
   $colorDarkGrey: #333;
   $colorLighterDarkGrey: #32363A;
@@ -157,7 +160,8 @@
         }
         .lab-verb-title-02 {
           bottom: 40vh;
-          right: 5%;
+          right: 10%;
+          text-align: right;
         }
         .lab-verb-title-03 {
           bottom: 15vh;
@@ -167,6 +171,12 @@
           margin-left: auto;
           width: 50%;
           text-align: center;
+          .cci {
+            display: inline-flex;
+            .left {
+              padding-right: 2%;
+            }
+          }
         }
         .lab-verb-title-04 {
           bottom: 5vh;
@@ -304,7 +314,7 @@
           font-size: 3.5vw;
           position: fixed;
           width: 60%;
-          left: 15%;
+          left: 10%;
           // margin-left: -20%;
           height: 40px;
           top: 20vh;
