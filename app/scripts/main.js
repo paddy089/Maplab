@@ -4,7 +4,7 @@ $(() => {
     'use strict';
     
     // enable/disable console logging
-    const LOGGING = false;
+    const LOGGING = true;
 
     // global window object
     const $window = $(window);
@@ -163,8 +163,8 @@ $(() => {
 
       skrollr.init({
         smoothScrolling: true,
-        scale: 1,
-        forceHeight: false,
+        scale: 0.01,
+        forceHeight: true,
         mobileDeceleration: 0.004
       });
 
