@@ -162,12 +162,12 @@
           text-align: right;
         }
         .cci-intro-text-03 {
-          bottom: 15vh;
+          bottom: 16vh;
           right: 0;
           left: 0;
           margin-right: auto;
           margin-left: auto;
-          width: 50%;
+          width: 100%;
           text-align: center;
           .cci {
             display: inline-flex;
@@ -277,17 +277,17 @@
             }
             .we-03 {
               // transform: rotate(-90deg);
-              right: 7%;
-              top: 41%;
-
+              right: 10%;
+              // top: 18vw;
+              top: 40%;
               // height: 5vw; 
               // bottom: 20%;
               text-align: center;
             }
             .we-04 {
-              left: 9%;
-              top: 54%;
-
+              left: 12%;
+              // bottom: 15vw;
+              bottom: 35%;
               // height: 5vw; 
               // bottom: 20%;
               text-align: center;
