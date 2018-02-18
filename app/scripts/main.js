@@ -4,7 +4,7 @@ $(() => {
     'use strict';
     
     // enable/disable console logging
-    const LOGGING = true;
+    const LOGGING = false;
 
     // global window object
     const $window = $(window);

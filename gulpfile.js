@@ -6,6 +6,7 @@ const wiredep = require('wiredep').stream;
 const runSequence = require('run-sequence');
 const ghPages = require('gulp-gh-pages');
 const gzip = require('gulp-gzip');
+const version = require('gulp-version-number');
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -93,6 +94,9 @@ gulp.task('html', ['styles', 'scripts'], () => {
       removeScriptTypeAttributes: true,
       removeStyleLinkTypeAttributes: true
     })))
+    .pipe(version({
+      
+    }))
     // .pipe(gzip())
     .pipe(gulp.dest('build'));
 });
