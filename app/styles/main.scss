@@ -129,6 +129,8 @@
   }
 
   .portrait {
+    // display: none;
+    // visibility: hidden;
     @include flex-center;
     @include size-viewport;
     text-align: center;
@@ -225,10 +227,11 @@
           margin-top: 150vh;
         }
         .make-it-purple {
+          top: 0;
+          left: 0;
           background-color: $colorCI_purple;
-          height: 850vh;
-          width: 100%;
-          margin-top: 600vh
+          height: 100%;
+          z-index: -999;
         }
         .makethatpageevenbigger {
           @include size-viewport;
@@ -236,10 +239,13 @@
           margin-top: 400vh;
         }
         .make-it-yellow {
+          top: 0;
+          left: 0;
           background-color: $colorCI_yellow;
-          height: 300vh;
+          height: 100%;
+          z-index: -999;
           // width: 100%;
-          margin-top: -220vh
+          // margin-top: -220vh
         }
         .sentence {
           top: 20%; // left: 10%;
@@ -443,7 +449,7 @@
             .inner {
               display: flex;
               .arrow {
-                color: red;
+                color: $colorCI_red;
                 will-change: transform;
                 transform: translateZ(0);
               }
