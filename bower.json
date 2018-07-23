@@ -2,7 +2,6 @@
   "name": "maplab",
   "private": true,
   "dependencies": {
-    "modernizr": "~2.8.1",
     "jquery": "^3.2.1",
     "normalize-css": "^7.0.0",
     "components-font-awesome": "^4.7.0",
